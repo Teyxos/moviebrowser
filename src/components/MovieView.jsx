@@ -39,6 +39,7 @@ const MovieView = () => {
                       ? posterUrl
                       : 'https://via.placeholder.com/300x500.png'
                   }
+                  alt='Something'
                   className='img-fluid shadow rounded'
                 />
               </div>
