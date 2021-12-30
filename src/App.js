@@ -7,6 +7,7 @@ import Home from './components/Home';
 import About from './components/About';
 import SearchView from './components/SearchView';
 import MovieView from './components/MovieView';
+import NotFound from './components/NotFound';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -37,6 +38,7 @@ function App() {
           }
         />
         <Route path='/movies/:id' element={<MovieView />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </>
   );

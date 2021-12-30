@@ -7,7 +7,7 @@ const SearchView = (props) => {
   if (!props.searchResults[0] && props.keyword) {
     return (
       <>
-        <Hero text='There is no result!' />
+        <Hero text={'There is no result for ' + '"' + props.keyword + '"'} />
         <h1 className='text-center my-5'>
           There is no results with that name!
         </h1>
