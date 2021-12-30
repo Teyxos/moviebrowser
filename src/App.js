@@ -6,19 +6,22 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import SearchView from './components/SearchView';
+import MovieView from './components/MovieView';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=9d39ef21be32363db42fda6e16991360&language=en-US&query=${searchText}&page=1&include_adult=false`
-    ).then((res) =>
-      res.json().then((res) => {
-        setSearchResults(res['results']);
-      })
-    );
+    if (searchText) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=9d39ef21be32363db42fda6e16991360&language=en-US&query=${searchText}&page=1&include_adult=false`
+      ).then((res) =>
+        res.json().then((res) => {
+          setSearchResults(res['results']);
+        })
+      );
+    }
   }, [searchText]);
 
   return (
@@ -33,6 +36,7 @@ function App() {
             <SearchView keyword={searchText} searchResults={searchResults} />
           }
         />
+        <Route path='/movies/:id' element={<MovieView />} />
       </Routes>
     </>
   );

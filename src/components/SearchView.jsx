@@ -1,14 +1,32 @@
 import Hero from './Hero';
-
-// Key: 9d39ef21be32363db42fda6e16991360
-// Search: https://api.themoviedb.org/3/search/movie?api_key=9d39ef21be32363db42fda6e16991360&language=en-US&query=''''''&page=1&include_adult=false
+import Movie from './Movie';
 
 const SearchView = (props) => {
   const title = `You are seaching for "${props.keyword}"`;
 
+  if (!props.searchResults[0] && props.keyword) {
+    return (
+      <>
+        <Hero text='There is no result!' />
+        <h1 className='text-center my-5'>
+          There is no results with that name!
+        </h1>
+      </>
+    );
+  }
+
+  const resultHtml = props.searchResults.map((movie, i) => {
+    return <Movie data={movie} key={i} />;
+  });
+
   return (
     <>
       <Hero text={title} />
+      {resultHtml && (
+        <div className='container'>
+          <div className='row'>{resultHtml}</div>
+        </div>
+      )}
     </>
   );
 };
