@@ -8,6 +8,11 @@ const Navbar = (props) => {
     props.setSearchText(event.target.value);
   };
 
+  const btnHandler = (e) => {
+    e.preventDefault();
+    navigate('/search');
+  };
+
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <div className='container-fluid'>
@@ -52,7 +57,11 @@ const Navbar = (props) => {
               value={props.searchText}
               onChange={updateSearchText}
             />
-            <button className='btn btn-outline-success' type='submit'>
+            <button
+              className='btn btn-outline-success'
+              type='submit'
+              onClick={btnHandler}
+            >
               Search
             </button>
           </form>
